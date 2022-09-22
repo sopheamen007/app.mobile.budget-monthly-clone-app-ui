@@ -1,3 +1,4 @@
+import 'package:budget_monthly_clone/pages/your_balance_page.dart';
 import 'package:budget_monthly_clone/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -51,32 +52,37 @@ class _DashboardPageState extends State<DashboardPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "\$",
-                                      style:
-                                          TextStyle(fontSize: 22, color: white),
-                                    ),
-                                    Text(
-                                      "1,752",
-                                      style:
-                                          TextStyle(fontSize: 30, color: white),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 2,
-                                ),
-                                Text(
-                                  "Available balance",
-                                  style:
-                                      TextStyle(color: white.withOpacity(0.8)),
-                                )
-                              ],
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => YourBalancePage()));
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "\$",
+                                        style:
+                                            TextStyle(fontSize: 22, color: white),
+                                      ),
+                                      Text(
+                                        "1,752",
+                                        style:
+                                            TextStyle(fontSize: 30, color: white),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 2,
+                                  ),
+                                  Text(
+                                    "Available balance",
+                                    style:
+                                        TextStyle(color: white.withOpacity(0.8)),
+                                  )
+                                ],
+                              ),
                             ),
                             Container(
                               width: 45,
@@ -186,9 +192,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 ],
                               ),
                               SizedBox(height: 15,),
-                              Divider(
-
-                              ),
+                              Divider(),
                                SizedBox(height:5,),
                                Text(
                                   "You spent \$1,230 on dining out this month. Let's try to make it lower",
