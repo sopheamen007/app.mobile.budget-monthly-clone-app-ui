@@ -2,6 +2,7 @@ import 'package:budget_monthly_clone/pages/your_balance_page.dart';
 import 'package:budget_monthly_clone/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -21,6 +22,20 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Widget getBody() {
     var size = MediaQuery.of(context).size;
+    List items = [
+      {
+        "title" : "Transfer",
+        "icon" : Feather.send
+      },
+       {
+        "title" : "My Card",
+        "icon" : AntDesign.creditcard
+      },
+       {
+        "title" : "Insight",
+        "icon" : AntDesign.areachart
+      }
+    ];
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,15 +99,33 @@ class _DashboardPageState extends State<DashboardPage> {
                                 ],
                               ),
                             ),
-                            Container(
-                              width: 45,
-                              height: 45,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                          "https://images.unsplash.com/photo-1663431512297-993006b0098b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2M3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"),
-                                      fit: BoxFit.cover),
-                                  borderRadius: BorderRadius.circular(15)),
+                            Stack(
+                              children: [
+                                Container(
+                                  width: 45,
+                                  height: 45,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                              "https://images.unsplash.com/photo-1663431512297-993006b0098b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2M3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"),
+                                          fit: BoxFit.cover),
+                                      borderRadius: BorderRadius.circular(15)),
+                                ),
+                                Positioned(
+                                  top: 35,
+                                  child: Container(
+                                    width: 12,
+                                    height: 12,
+                                    decoration:BoxDecoration(
+                                      color: white,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: primary
+                                      )
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ],
                         ),
@@ -236,7 +269,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 Wrap(
                   spacing: 25,
-                  children: List.generate(3, (index) {
+                  children: List.generate(items.length, (index) {
                     return Container(
                       width: (size.width / 3) - 30,
                       height: (size.width / 3) - 25,
@@ -264,7 +297,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 borderRadius: BorderRadius.circular(15)),
                             child: Center(
                               child: Icon(
-                                Icons.chat,
+                                items[index]['icon'],
                                 color: white,
                                 size: 20,
                               ),
@@ -274,7 +307,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             height: 12,
                           ),
                           Text(
-                            "Transfer",
+                            items[index]['title'],
                             style: TextStyle(
                                 fontSize: 13, color: black.withOpacity(0.5)),
                           )
@@ -371,8 +404,8 @@ class _DashboardPageState extends State<DashboardPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Icon(
-                              Icons.supervised_user_circle,
-                              color: secondary,
+                              MaterialCommunityIcons.account,
+                              color: primary,
                             ),
                             SizedBox(
                               width: 20,
@@ -428,7 +461,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         Row(
                           children: [
                             Icon(
-                              Icons.perm_identity,
+                              MaterialCommunityIcons.account_badge,
                               color: primary,
                             ),
                             SizedBox(
@@ -453,7 +486,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         Row(
                           children: [
                             Icon(
-                              Icons.email,
+                              MaterialCommunityIcons.email,
                               color: primary,
                             ),
                             SizedBox(
@@ -510,7 +543,8 @@ class _DashboardPageState extends State<DashboardPage> {
                         width: double.infinity,
                         height: 130,
                         decoration: BoxDecoration(
-                            color: primary,
+                          image: DecorationImage(image: AssetImage("assets/images/promo_news.png"),fit: BoxFit.cover),
+                            // color: primary,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(12),
                                 topRight: Radius.circular(12))),

@@ -1,5 +1,9 @@
+import 'package:budget_monthly_clone/json/category_json.dart';
+import 'package:budget_monthly_clone/json/merchant_json.dart';
+import 'package:budget_monthly_clone/pages/widgets/chart_line.dart';
 import 'package:budget_monthly_clone/theme/colors.dart';
 import 'package:circle_progress_bar/circle_progress_bar.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class YourBalancePage extends StatefulWidget {
@@ -82,7 +86,8 @@ class _YourBalancePageState extends State<YourBalancePage> {
                 Container(
                   width: double.infinity,
                   height: 150,
-                  decoration: BoxDecoration(color: primary),
+                  child: LineChart(activityData()),
+                  // decoration: BoxDecoration(color: primary),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 120, left: 20, right: 20),
@@ -190,7 +195,7 @@ class _YourBalancePageState extends State<YourBalancePage> {
           ),
           getTopMechants(),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           getTopCategories()
         ],
@@ -213,7 +218,7 @@ class _YourBalancePageState extends State<YourBalancePage> {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: List.generate(3, (index) {
+            children: List.generate(merchantList.length, (index) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: Column(
@@ -240,7 +245,7 @@ class _YourBalancePageState extends State<YourBalancePage> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Image.network(
-                                    "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"),
+                                    merchantList[index]['img']),
                               ),
                             ),
                             SizedBox(
@@ -250,7 +255,7 @@ class _YourBalancePageState extends State<YourBalancePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Starbucks",
+                                  merchantList[index]['name'],
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15),
@@ -259,7 +264,7 @@ class _YourBalancePageState extends State<YourBalancePage> {
                                   height: 5,
                                 ),
                                 Text(
-                                  "4 Transactions",
+                                  merchantList[index]['transaction'],
                                   style: TextStyle(
                                       color: black.withOpacity(0.5),
                                       fontSize: 13),
@@ -269,7 +274,7 @@ class _YourBalancePageState extends State<YourBalancePage> {
                           ],
                         ),
                         Text(
-                          "\$254",
+                          merchantList[index]['price'],
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
                         )
@@ -305,7 +310,7 @@ class _YourBalancePageState extends State<YourBalancePage> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: List.generate(5, (index) {
+              children: List.generate(categoryList.length, (index) {
                 return Padding(
                   padding: const EdgeInsets.only(right: 15),
                   child: Container(
@@ -327,21 +332,26 @@ class _YourBalancePageState extends State<YourBalancePage> {
                           left: 15, right: 15, top: 20, bottom: 10),
                       child: Column(
                         children: [
-                          Container(
+                          SizedBox(
                             width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                                // color: primary,
-                                shape: BoxShape.circle,
-                                border: Border.all(width: 5, color: primary)),
+                            child: CircleProgressBar(
+                                      foregroundColor: primary,
+                                      backgroundColor: black.withOpacity(0.1),
+                                      value: categoryList[index]['percentage'],
+                                      child: Center(child: Text(categoryList[index]['img'],style: TextStyle(
+                                        fontSize: 22
+                                      ),)),
+                                   
+                                    ),
                           ),
+                         
                           SizedBox(height: 15,),
-                          Text("Eating out",style: TextStyle(
+                          Text(categoryList[index]['name'],style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600
                           ),),
                           SizedBox(height: 5,),
-                            Text("\$659",style: TextStyle(
+                            Text(categoryList[index]['price'],style: TextStyle(
                             fontSize: 16,
                             color: black.withOpacity(0.5),
                             fontWeight: FontWeight.w600
