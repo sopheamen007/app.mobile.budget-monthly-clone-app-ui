@@ -58,138 +58,11 @@ class _YourBalancePageState extends State<YourBalancePage> {
           SizedBox(
             height: 20,
           ),
-          Center(
-            child: Column(
-              children: [
-                Text(
-                  "Your balance is \$1,752",
-                  style: TextStyle(
-                      fontSize: 20, color: black, fontWeight: FontWeight.w600),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "By this time last month, you spent\n slightly higher (\$2,450)",
-                  style: TextStyle(fontSize: 14, height: 1.6),
-                ),
-              ],
-            ),
-          ),
+          getBalance(),
           SizedBox(
             height: 20,
           ),
-          Container(
-            height: 200,
-            child: Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 150,
-                  child: LineChart(activityData()),
-                  // decoration: BoxDecoration(color: primary),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 120, left: 20, right: 20),
-                  child: Container(
-                    height: 80,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: black.withOpacity(0.01),
-                            spreadRadius: 10,
-                            blurRadius: 10,
-                            // changes position of shadow
-                          ),
-                        ]),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 10,
-                                  height: 10,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.redAccent),
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Spent",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: black.withOpacity(0.5)),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      "\$3,460",
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          Flexible(
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 10,
-                                  height: 10,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle, color: primary),
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Earned",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: black.withOpacity(0.5)),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      "\$1,890",
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+          getChartAndBalance(),
           SizedBox(
             height: 30,
           ),
@@ -386,5 +259,140 @@ class _YourBalancePageState extends State<YourBalancePage> {
         ],
       ),
     );
+  }
+  
+  Widget getBalance(){
+    return Center(
+            child: Column(
+              children: [
+                Text(
+                  "Your balance is \$1,752",
+                  style: TextStyle(
+                      fontSize: 20, color: black, fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "By this time last month, you spent\n slightly higher (\$2,450)",
+                  style: TextStyle(fontSize: 14, height: 1.6),
+                ),
+              ],
+            ),
+          );
+  }
+
+  Widget getChartAndBalance(){
+    return Container(
+            height: 200,
+            child: Stack(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 150,
+                  child: LineChart(activityData()),
+                 
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 120, left: 20, right: 20),
+                  child: Container(
+                    height: 80,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: black.withOpacity(0.01),
+                            spreadRadius: 10,
+                            blurRadius: 10,
+                            // changes position of shadow
+                          ),
+                        ]),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 10,
+                                  height: 10,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.redAccent),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Spent",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: black.withOpacity(0.5)),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      "\$3,460",
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                          Flexible(
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 10,
+                                  height: 10,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle, color: primary),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Earned",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: black.withOpacity(0.5)),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      "\$1,890",
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
   }
 }
