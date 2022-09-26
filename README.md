@@ -1,4 +1,9 @@
-# budget_monthly_clone
+# Budget Monthly App UI
+
+- [Support me on Patreon](https://www.patreon.com/sopheamenvan?fan_landing=true)
+- [Watch on Youtube](https://youtu.be/9_NTlsf4xP0)
+
+![App UI](https://user-images.githubusercontent.com/16510597/192282030-8860da8c-8f83-4f4a-8e3e-f018ac438a3c.png)
 
 A new Flutter project.
 
